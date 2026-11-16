@@ -16,5 +16,5 @@ A Python-based ground station command and FITS science pipeline built to ingest,
 
 1. Clone this repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/roman-ground-command.git](https://github.com/YOUR_USERNAME/roman-ground-command.git)
+   git clone https://github.com/aryadeepchattopadhyay-pixel/roman-ground-command.git
    cd roman-ground-command
