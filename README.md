@@ -1,20 +1,21 @@
-# 🔭 Nancy Grace Roman Space Telescope — Ground Telemetry Workstation
+# Roman Ground Command (v3 Beta 2)
 
-![Workstation Preview](preview.png)
+![Roman Ground Command Workstation Preview](preview2.png)
 
-A Python-based ground station command and FITS science pipeline built to ingest, visualize, and analyze Wide Field Instrument (WFI) telemetry from NASA's **Nancy Grace Roman Space Telescope** at Sun-Earth $L_2$.
+A lightweight Python telemetry workstation, multi-band Lupton RGB composite engine, and Plain-English Science Translator built for the **Nancy Grace Roman Space Telescope** ahead of its December 7, 2026 first-light public data release.
 
-## Key Capabilities
+Roman's 300-megapixel Wide Field Instrument (WFI) publishes 100% of its calibrated science exposures directly to NASA's MAST archive with zero proprietary lock period. **Roman Ground Command** lets anyone query those `.asdf` and `.fits` exposures on a standard laptop, inspect specific detector coordinates, and read human-friendly translations of the underlying astrophysics.
 
-* **Topocentric Horizon Ephemeris:** Transforms survey target coordinates from ICRS equatorial frames (RA/Dec) into real-time local Alt/Az vectors and atmospheric airmass calculations relative to the ground station (`24.0983° N, 88.2679° E`).
-* **MAST CAOM Archive Ingestion:** Queries the Mikulski Archive for Space Telescopes (MAST) REST API for calibrated WFI science FITS products, with a built-in calibrated 1024×1024 WFI detector simulation fallback during mission commissioning.
-* **Memory-Safe FITS Processing:** Uses `astropy.io.fits` memory mapping (`memmap=True`) and array downsampling alongside `ZScaleInterval` and `AsinhStretch` normalization to render high-dynamic-range astronomical fields smoothly on lightweight hardware.
-* **Adopt-a-Pixel Sub-Pixel Targeter:** Maps registered detector coordinates (defaulting to pixel `X=1569, Y=158` / ID `00648577`) onto the downsampled focal plane with a precision reticle overlay and live photon flux readout.
-* **Automated Dossier Dispatch:** Generates high-resolution science exposure plots paired with log-scaled photon count histograms and dispatches formatted telemetry reports via SMTP.
+## Key Features (v3 Beta 2)
+* **Live MAST Pipeline & Calibration Support:** Queries Roman WFI `.asdf` exposures and live JWST MAST `.fits` calibration frames, with a built-in 3-band synthetic fallback when offline.
+* **Multi-Band Lupton RGB Engine:** Automatically sorts short, mid, and long infrared filters by wavelength and blends them into calibrated `asinh`-stretched color composites using `astropy.visualization.make_lupton_rgb`.
+* **Dual-Pixel Reticle Targeter:** Tracks two independent `(X, Y)` coordinates simultaneously across the `4088 × 4088` WFI detector grid to compare target sources against dark sky baselines.
+* **Plain-English Science Translator:** Converts raw signal-to-noise ratios, infrared filter wavelengths, horizon elevation, and pixel flux values into plain, readable summaries right inside the GUI.
+* **Optional Automated Email Briefings:** Dispatches formatted telemetry reports with attached RGB composites and photon histograms via SMTP when configured.
 
-## Installation & Setup
+## Installation
 
-1. Clone this repository:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/aryadeepchattopadhyay-pixel/roman-ground-command.git
+   git clone [https://github.com/aryadeepchattopadhyay-pixel/roman-ground-command.git](https://github.com/aryadeepchattopadhyay-pixel/roman-ground-command.git)
    cd roman-ground-command
